@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MonthlyPayslip/.vs/MonthlyPayslip/v16
+/MonthlyPayslip/MonthlyPayslip/obj
+/MonthlyPayslip/.vs/MonthlyPayslip/DesignTimeBuild
+/MonthlyPayslip/MonthlyPayslip/bin/Debug/net5.0
+/MonthlyPayslip/MonthlyPayslip.Application/bin/Debug/net5.0
+/MonthlyPayslip/MonthlyPayslip.Application/obj
+/MonthlyPayslip/MonthlyPayslip.Domain/bin/Debug/net5.0
+/MonthlyPayslip/MonthlyPayslip.Domain/obj
+/MonthlyPayslip/MonthlyPayslip.Units.Application/obj
