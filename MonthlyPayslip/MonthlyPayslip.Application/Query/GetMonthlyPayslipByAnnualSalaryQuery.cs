@@ -15,6 +15,10 @@ namespace MonthlyPayslip.Application.Query
 
         public class Handler:IRequestHandler<Query, Employee>
         {
+            public Handler()
+            {
+                
+            }
             public async Task<Employee> Handle(Query request, CancellationToken cancellationToken)
             {
                 var employee = new Employee(request.Name, request.AnnualSalary);

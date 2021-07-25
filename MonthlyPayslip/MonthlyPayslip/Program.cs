@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MonthlyPayslip.Application;
 using MonthlyPayslip.Application.Query;
@@ -9,7 +10,7 @@ namespace MonthlyPayslip
 {
     class Program
     {
-        private static readonly IMediator _mediator;
+        private static IMediator _mediator;
 
         static async Task Main(string[] args)
         {
@@ -17,12 +18,13 @@ namespace MonthlyPayslip
             Console.WriteLine("Please type input string.");
             var inputString = Console.ReadLine();
             var inputStringList = inputString.Split('"');
+            _mediator = host.Services.GetService<IMediator>();
             try
             {
                 var employee = await  _mediator.Send(new GetMonthlyPayslipByAnnualSalaryQuery.Query
                 {
-                    Name = inputStringList[1],
-                    AnnualSalary = Decimal.Parse(inputStringList[2])
+                    Name = inputStringList[1].Trim(),
+                    AnnualSalary = Decimal.Parse(inputStringList[2].Trim())
                 });
                 Console.WriteLine($"Monthly Payslip for: \"{employee.EmployeeName}\"");
                 Console.WriteLine($"Gross Monthly Income: \"{employee.MonthlyPreTaxSalary:C}\"");

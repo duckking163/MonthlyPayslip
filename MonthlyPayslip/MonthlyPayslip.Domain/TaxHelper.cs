@@ -48,7 +48,7 @@ namespace MonthlyPayslip.Domain
                     break;
                 }
 
-                result += (annualPretaxSalary - taxBracket.LowerBracket) * taxBracket.TaxRate;
+                result += ((annualPretaxSalary>taxBracket.UpperBracket?taxBracket.UpperBracket:annualPretaxSalary) - taxBracket.LowerBracket) * taxBracket.TaxRate;
             }
             return result;
         }
