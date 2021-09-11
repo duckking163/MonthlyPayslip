@@ -24,7 +24,8 @@ namespace MonthlyPayslip
                 var employee = await  _mediator.Send(new GetMonthlyPayslipByAnnualSalaryQuery.Query
                 {
                     Name = inputStringList[1].Trim(),
-                    AnnualSalary = Decimal.Parse(inputStringList[2].Trim())
+                    AnnualSalary = Decimal.Parse(inputStringList[2].Trim()),
+                    IsAustralianResident = true
                 });
                 Console.WriteLine($"Monthly Payslip for: \"{employee.EmployeeName}\"");
                 Console.WriteLine($"Gross Monthly Income: \"{employee.MonthlyPreTaxSalary:C}\"");

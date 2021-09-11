@@ -14,16 +14,20 @@ namespace MonthlyPayslip.Domain
 
         public decimal MonthlyIncomeTax { get; set; }
 
-        public Employee(string employeeName, decimal annualSalary)
+        public bool IsAustralianResident { get; set; }
+
+        public Employee(string employeeName, decimal annualSalary, bool isAustralianResident)
         {
             EmployeeName = employeeName;
             AnnualSalary = annualSalary;
+            IsAustralianResident = isAustralianResident;
         }
 
         public void PopulateMonthlySalary()
         {
             MonthlyPreTaxSalary = RoundDown(AnnualSalary/12,2);
-            var annualIncomeTax = TaxHelper.CalculateAnnualIncomeTax(MonthlyPreTaxSalary*12);
+            //var annualIncomeTax = IsAustralianResident? TaxHelper.CalculateAustralianAnnualIncomeTax(MonthlyPreTaxSalary*12) : TaxHelper.CalculateNonAustralianAnnualIncomeTax(MonthlyPreTaxSalary * 12);
+            var annualIncomeTax = TaxHelper.CalculateAnnualIncomeTax(AnnualSalary, TaxHelper.AustralianTaxBracket);
             MonthlyIncomeTax = RoundDown(annualIncomeTax / 12, 2);
             MonthlyPostTaxSalary = MonthlyPreTaxSalary - MonthlyIncomeTax;
         }
